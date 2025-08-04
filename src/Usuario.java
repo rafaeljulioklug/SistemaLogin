@@ -1,21 +1,17 @@
 public class Usuario {
-
-    //Atributos
     private Email email;
     private Senha senha;
 
-    //Construtor
-    public Usuario(String email, String senha) throws Exception {
-        this.email = new Email(email);
-        this.senha = new Senha(senha);
+    public Usuario(Email email, Senha senha) {
+        this.email = email;
+        this.senha = senha;
     }
 
-    //Métodos
-    public Email getEmail(){
+    public Email getEmail() {
         return email;
     }
 
-    public Senha getSenha(){
+    public Senha getSenha() {
         return senha;
     }
 }

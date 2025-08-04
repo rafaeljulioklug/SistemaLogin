@@ -1,24 +1,31 @@
 public class Email {
-    private String email;
+    private String endereco;
 
-    //Construtor
-    public Email(String email) throws Exception {
-        this.setEmail(email);
-    }
-
-    //Métodos
-    public boolean validarEmail(String email) {
-        return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email) throws Exception {
-        if(!validarEmail(email)){
-            throw new Exception("E-mail inválido.");
+    public Email(String endereco) throws Exception {
+        if (!validar(endereco)) {
+            throw new Exception("Formato de e-mail inválido.");
         }
-        this.email=email;
+        this.endereco = endereco;
+    }
+
+    private boolean validar(String email) {
+        return email != null && email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Email)) return false;
+        Email outro = (Email) obj;
+        return endereco.equalsIgnoreCase(outro.endereco); // ignora maiúsculas
+    }
+
+    @Override
+    public int hashCode() {
+        return endereco.toLowerCase().hashCode();
     }
 }

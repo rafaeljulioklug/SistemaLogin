@@ -1,16 +1,17 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //Sistema de login com validação e mensagem de erro.
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Registro registro = new Registro();
+        Login login = new Login(registro);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        try {
+            Email email = new Email("rafa@teste.com");
+            Senha senha = new Senha("Senha@123");
+            registro.cadastrar(email, senha);
+        } catch (Exception e) {
+            System.out.println("Erro no cadastro: " + e.getMessage());
         }
+
+        boolean autenticado = login.autenticar("rafa@teste.com", "Senha@123");
+        System.out.println("Autenticação: " + (autenticado ? "sucesso" : "falha"));
     }
 }
